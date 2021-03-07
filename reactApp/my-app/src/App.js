@@ -1,67 +1,40 @@
 import React, { useState } from 'react';
-const App = () => {
-  const [count, setCount] = useState(0);
+const App = (props) => {
+  const {name, price} = props;
+  //初期値
+  // const initState = {
+  //   name: '',
+  //   price: 1000
+  // } 
 
-  const handliPulsClick = () => {
-    setCount(count + 1);
-  }
 
-  const handliMinusClick = () => {
-    setCount(count - 1);
-  }
 
-  const handliPulsClick2  = () => {
-    setCount((prevCount) => {
-      return prevCount + 1;
-    });
-  }
-  const handliMinusClick2  = () => {
-    setCount((prevCount) => {
-      return prevCount - 1;
-    });
-  }
 
-  const resetClick = () => {
-    setCount((prevCount) => {
-      prevCount = 0;
-      return prevCount;
-    });
-  }
+  //state
+  const [nameItem, setName] = useState(name);
+  const [prices, setPrice] = useState(price);
 
-  const twoClick = () => {
-    setCount(count * 2)
-  }
-
-  const division = () => {
-    setCount((prevCount) => {
-      if(prevCount % 3 === 0){
-        return prevCount / 3;
-      }else{
-        return prevCount;
-      }
-    })
+  const reset = () => {
+    setPrice(price);
+    setName(name);
   }
 
   return (
     <>
-      <div>
-        Count:{count}
-      </div>
-      <div>
-        <button onClick={handliPulsClick}>+1</button>
-        <button onClick={handliMinusClick}>-1</button>
-      </div>
-      <div>
-        <button onClick={handliPulsClick2}>+1</button>
-        <button onClick={handliMinusClick2}>-1</button>
-      </div>
-      <div>
-        <button onClick={resetClick}>Reset</button>
-        <button onClick={twoClick}>*2</button>
-        <button onClick={division}>3の倍数の時３で割る</button>
-      </div>
+      <p>現在の{nameItem}は{prices}円です。</p>
+      <button onClick={() => setPrice(prices + 1)} >+1</button>
+      <button onClick={() => setPrice(prices - 1)} >-1</button>
+      <button onClick={reset} >Reset</button>
+      <input type='text' value={nameItem} onChange={(e) => setName(e.target.value)}/>
     </>
   );
 }
+
+App.defaultProps = {
+  name: '',
+  price: 1000
+} 
+
+
 
 export default App
