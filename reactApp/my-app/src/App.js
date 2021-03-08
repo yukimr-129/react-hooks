@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+const App = (props) => {
+  // const {name, price} = props;
+  //初期値
+  // const initState = {
+  //   name: '',
+  //   price: 1000
+  // } 
 
-function App() {
+
+
+
+  //state
+  const [state, setState] = useState(props);
+  // const [nameItem, setName] = useState(name);
+  // const [prices, setPrice] = useState(price);
+
+  const reset = () => {
+    // setPrice(price);
+    // setName(name);
+    setState(props);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <p>現在の{state.name}は{state.price}円です。</p>
+      <button onClick={() => setState({...state, price: state.price + 1})} >+1</button>
+      <button onClick={() => setState({...state, price: state.price - 1})} >-1</button>
+      <button onClick={reset} >Reset</button>
+      <input type='text' value={state.name} onChange={(e) => setState({...state, name: e.target.value})}/>
+    </>
   );
 }
 
-export default App;
+App.defaultProps = {
+  name: '',
+  price: 1000
+} 
+
+
+
+export default App
