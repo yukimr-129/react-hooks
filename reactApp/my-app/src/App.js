@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 const App = (props) => {
   // const {name, price} = props;
   //初期値
@@ -15,6 +15,13 @@ const App = (props) => {
   // const [nameItem, setName] = useState(name);
   // const [prices, setPrice] = useState(price);
 
+  const {name, price} = state;
+  useEffect(() => {
+    console.log('rendiring');
+  }, [name]);
+
+
+
   const reset = () => {
     // setPrice(price);
     // setName(name);
@@ -23,7 +30,7 @@ const App = (props) => {
 
   return (
     <>
-      <p>現在の{state.name}は{state.price}円です。</p>
+      <p>現在の{state.name}は{state.price}円です</p>
       <button onClick={() => setState({...state, price: state.price + 1})} >+1</button>
       <button onClick={() => setState({...state, price: state.price - 1})} >-1</button>
       <button onClick={reset} >Reset</button>
