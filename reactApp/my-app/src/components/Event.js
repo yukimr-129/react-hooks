@@ -1,13 +1,15 @@
 import React from 'react'
+import { DELETE_EVENT } from '../actions'
 // import reducer from '../reducers';
 
 const Event = (props) => {
     const { event, dispatch } = props
     const handleClickDelete = (index) => {
         const result = window.confirm(`【Title: ${event.title}】のイベントを削除しますか？`)
+        
         if (result) {
             dispatch({
-              type: 'DELETE_EVENT',
+              type: DELETE_EVENT,
               id: index
             })
         } else {
