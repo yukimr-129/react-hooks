@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { DELETE_EVENT } from '../actions'
+import AppContext from '../contexts/AppContext'
 // import reducer from '../reducers';
 
 const Event = (props) => {
-    const { event, dispatch } = props
+    const { event } = props
+    const { dispatch } = useContext(AppContext)
+    
     const handleClickDelete = (index) => {
         const result = window.confirm(`【Title: ${event.title}】のイベントを削除しますか？`)
         

@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { CREATE_EVENT } from '../actions'
 import { DELETE_ALL_EVENT } from '../actions'
+import AppContext from '../contexts/AppContext'
 
-const EventForm = (props) => {
-  const {state, dispatch} = props
+const EventForm = () => {
+  const { state, dispatch } = useContext(AppContext)
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -41,7 +42,7 @@ const EventForm = (props) => {
   }
 
 const unCreatetable = title === '' || body === ''
-const unDletetable = state.length === 0
+const unDletetable = state.events.length === 0
     return (
         <>
             <h4>イベント作成フォーム</h4>
