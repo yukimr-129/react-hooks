@@ -1,7 +1,10 @@
 import React, { useState, useContext } from 'react'
 import { CREATE_EVENT } from '../actions'
 import { DELETE_ALL_EVENT } from '../actions'
+import { ADD_OPERATION_LOG } from '../actions'
+import { DLETE_ALL_OPERATION_LOG } from '../actions'
 import AppContext from '../contexts/AppContext'
+import { timecurrent } from '../utils'
 
 const EventForm = () => {
   const { state, dispatch } = useContext(AppContext)
@@ -25,6 +28,12 @@ const EventForm = () => {
       title,
       body
     })
+
+    dispatch({
+        type: ADD_OPERATION_LOG,
+        description: 'イベントを作成しました',
+        opratedAt: timecurrent()
+    })
     setTitle('')
     setBody('')
   }
@@ -35,6 +44,12 @@ const EventForm = () => {
     if (result) {
       dispatch({
         type: DELETE_ALL_EVENT
+      }) 
+
+      dispatch({
+        type: ADD_OPERATION_LOG,
+        description: '全てのイベントを削除しました',
+        opratedAt: timecurrent()
       }) 
     } else {  
       return

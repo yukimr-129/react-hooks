@@ -11,7 +11,7 @@ const oparationLogs = (state = [], action) => {
                 opratedAt: action.oprated_at
             }
 
-            return state.unshift(pratationLog)
+            return [pratationLog, ...state]
             break;
         case DLETE_ALL_OPERATION_LOG:
             return []
