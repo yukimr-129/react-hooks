@@ -56,8 +56,19 @@ const EventForm = () => {
     }
   }
 
-const unCreatetable = title === '' || body === ''
-const unDletetable = state.events.length === 0
+  const dleteAllOparationLogs = (e) => {
+      e.preventDefault()
+      const result = window.confirm('全てログを削除しますか？')
+      if (result) {
+          dispatch({ type: DLETE_ALL_OPERATION_LOG })
+      } else {
+          return
+      }
+  }
+
+    const unCreatetable = title === '' || body === ''
+    const unDletetable = state.events.length === 0
+    const unDletetableLogs = state.oparationLogs.length === 0
     return (
         <>
             <h4>イベント作成フォーム</h4>
@@ -74,7 +85,7 @@ const unDletetable = state.events.length === 0
 
             <button className="btn btn-primary mr-1" onClick={addEvent} disabled={unCreatetable} >イベント作成</button>
             <button className="btn btn-danger mr-1" onClick={DleteAllEvents} disabled={unDletetable}>全て削除</button>
-            <button className="btn btn-danger">全てのログを削除</button>
+            <button className="btn btn-danger" onClick={dleteAllOparationLogs} disabled={unDletetableLogs}>全てのログを削除</button>
             </form>
         </>
     )

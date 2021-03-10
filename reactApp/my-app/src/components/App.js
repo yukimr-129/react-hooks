@@ -5,6 +5,7 @@ import Events from './Events';
 import EventForm from './EventForm'
 import AppContext from '../contexts/AppContext'
 import events from '../reducers/events';
+import OperationLogs from './OperationLogs'
 
 console.log(AppContext);
 const App = () => {
@@ -21,6 +22,8 @@ const App = () => {
         <EventForm />
         
         <Events />
+        
+        <OperationLogs />
       </div>
     </AppContext.Provider>
   );
